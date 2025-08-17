@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Edge Extension</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Edge Extension</h1>
+        <p>Welcome to your Edge extension!</p>
+        
+        <div class="section">
+            <h3>Current Tab Info</h3>
+            <p id="tab-url">Loading...</p>
+            <p id="tab-title">Loading...</p>
+        </div>
+        
+        <div class="section">
+            <button id="action-btn" class="primary-btn">Click Me!</button>
+            <button id="storage-btn" class="secondary-btn">Test Storage</button>
+        </div>
+        
+        <div class="section">
+            <p id="status">Ready</p>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
