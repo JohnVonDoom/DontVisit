@@ -1,136 +1,168 @@
-# Microsoft Edge Extension Template
+# DontVisit - Website Blocker Extension
 
-A complete base template for creating Microsoft Edge extensions using Manifest V3.
+A powerful and user-friendly browser extension that helps you stay focused and productive by blocking distracting websites.
 
-## Files Structure
+## Features
+
+### 🚫 Website Blocking
+- **Multiple Blocking Methods**: Choose between closing tabs, redirecting to a blocked page, or showing a warning
+- **Smart Pattern Matching**: Support for exact domains, subdomains, and wildcard patterns
+- **Real-time Blocking**: Instantly blocks sites as you navigate
+
+### 🎯 User-Friendly Interface
+- **Clean Popup Design**: Modern, intuitive interface for managing blocked sites
+- **Current Site Blocking**: Quickly block the site you're currently viewing
+- **Easy Management**: Add, remove, and view all blocked sites in one place
+- **Toggle Control**: Easily enable/disable blocking with a simple switch
+
+### 📊 Statistics & Insights
+- **Blocking Statistics**: Track how many sites you've blocked over time
+- **Productivity Insights**: See your progress in staying focused
+- **Export Functionality**: Backup and share your blocked sites list
+
+### ⚙️ Flexible Settings
+- **Blocking Methods**:
+  - **Close Tab**: Immediately closes the tab when a blocked site is accessed
+  - **Redirect**: Shows a motivational blocked page with productivity tips
+  - **Warning**: Displays a warning overlay with option to proceed or go back
+- **Pattern Support**: Block entire domains, specific pages, or use wildcards
+- **Subdomain Control**: Choose whether to block subdomains automatically
+
+## Installation
+
+1. Download or clone this repository
+2. Open your browser's extension management page:
+   - **Chrome**: `chrome://extensions/`
+   - **Edge**: `edge://extensions/`
+3. Enable "Developer mode"
+4. Click "Load unpacked" and select the extension folder
+5. The DontVisit extension icon will appear in your browser toolbar
+
+## Usage
+
+### Adding Blocked Sites
+
+1. **From the popup**:
+   - Click the DontVisit extension icon
+   - Enter a website in the "Add Website to Block" field
+   - Click "Add" or press Enter
+
+2. **Block current site**:
+   - Navigate to the site you want to block
+   - Click the DontVisit extension icon
+   - Click "Block This Site"
+
+### Managing Blocked Sites
+
+- **View all blocked sites**: Open the extension popup to see your complete list
+- **Remove sites**: Click the "×" button next to any site in the list
+- **Clear all**: Use the "Clear All Sites" button to remove all blocked sites
+- **Export list**: Click "Export List" to download your blocked sites as a JSON file
+
+### Blocking Methods
+
+Choose your preferred blocking method in the Settings section:
+
+- **Close Tab**: Blocked tabs are immediately closed (most restrictive)
+- **Redirect to Blocked Page**: Shows a motivational page with productivity tips
+- **Show Warning**: Displays a warning with option to proceed (least restrictive)
+
+### Pattern Examples
+
+- `facebook.com` - Blocks Facebook
+- `*.reddit.com` - Blocks all Reddit subdomains
+- `youtube.com/watch` - Blocks YouTube videos but allows the main page
+- `twitter.com` - Blocks Twitter/X
+
+## File Structure
 
 ```
-├── manifest.json       # Extension configuration and permissions
-├── popup.html         # Extension popup interface
-├── popup.css          # Styling for the popup
-├── popup.js           # Popup functionality and logic
-├── background.js      # Background service worker
-├── content.js         # Content script for web page interaction
-├── icons/             # Extension icons (16x16, 32x32, 48x48, 128x128)
-└── README.md          # This file
+DontVisit/
+├── manifest.json          # Extension configuration
+├── background.js          # Background service worker (main blocking logic)
+├── popup.html            # Extension popup interface
+├── popup.css             # Popup styling
+├── popup.js              # Popup functionality
+├── content.js            # Content script (warning overlays)
+├── blocked.html          # Blocked page template
+├── README.md             # This file
+└── icons/                # Extension icons
+    ├── icon16.png
+    ├── icon32.png
+    ├── icon48.png
+    └── icon128.png
 ```
 
-## Features Included
+## Technical Details
 
-### 🎯 Core Components
-- **Manifest V3** configuration
-- **Popup interface** with modern UI
-- **Background service worker** for persistent functionality
-- **Content script** for web page interaction
-- **Storage API** integration
-- **Message passing** between components
+### Architecture
 
-### 🛠️ Built-in Functionality
-- Tab information display
-- Local storage testing
-- Context menu integration
-- Floating button on web pages
-- Page change monitoring
-- Extension lifecycle management
+- **Manifest V3**: Uses the latest extension manifest version
+- **Service Worker**: Background script handles URL monitoring and blocking
+- **Content Scripts**: Inject warning overlays and handle user interactions
+- **Storage API**: Persistent storage for blocked sites and settings
+- **Tabs API**: Monitor and control browser tabs
 
-## Installation & Development
+### Permissions
 
-### 1. Load Extension in Edge
-1. Open Microsoft Edge
-2. Navigate to `edge://extensions/`
-3. Enable "Developer mode" (toggle in left sidebar)
-4. Click "Load unpacked"
-5. Select this extension folder
+- `activeTab`: Access current tab information
+- `storage`: Store blocked sites and settings
+- `tabs`: Monitor tab changes and apply blocking
 
-### 2. Add Icons (Required)
-Create the following icon files in the `icons/` folder:
-- `icon16.png` (16x16 pixels)
-- `icon32.png` (32x32 pixels)
-- `icon48.png` (48x48 pixels)
-- `icon128.png` (128x128 pixels)
+### Browser Compatibility
 
-### 3. Customize Extension
-1. Update `manifest.json` with your extension details
-2. Modify the popup interface in `popup.html` and `popup.css`
-3. Add your functionality to `popup.js`, `background.js`, and `content.js`
+- ✅ Google Chrome (Manifest V3)
+- ✅ Microsoft Edge (Manifest V3)
+- ✅ Other Chromium-based browsers
 
-## Key Components Explained
+## Development
 
-### manifest.json
-- Defines extension metadata, permissions, and file references
-- Uses Manifest V3 format (latest standard)
-- Includes common permissions like `activeTab` and `storage`
+### Local Development
 
-### popup.html/css/js
-- Creates the extension's popup interface
-- Displays current tab information
-- Provides buttons for testing functionality
-- Handles user interactions
+1. Clone the repository
+2. Make your changes
+3. Reload the extension in your browser's extension management page
+4. Test your changes
 
-### background.js
-- Service worker that runs in the background
-- Handles extension lifecycle events
-- Manages context menus and alarms
-- Facilitates communication between components
+### Key Components
 
-### content.js
-- Runs on web pages the user visits
-- Can modify page content and behavior
-- Adds floating button to pages
-- Monitors page changes and URL updates
+- **Background Script** (`background.js`): Core blocking logic, URL monitoring
+- **Popup Interface** (`popup.js`): User interface for managing blocked sites
+- **Content Script** (`content.js`): Warning overlays and page interactions
+- **Blocked Page** (`blocked.html`): Motivational page shown for redirected sites
 
-## Permissions Used
+## Privacy
 
-- `activeTab`: Access to the currently active tab
-- `storage`: Local storage for extension data
-- `contextMenus`: Right-click context menu items (optional)
-- `alarms`: Scheduled tasks (optional)
+DontVisit respects your privacy:
+- ✅ All data is stored locally on your device
+- ✅ No data is sent to external servers
+- ✅ No tracking or analytics
+- ✅ Open source code for transparency
 
-## Message Passing
+## Contributing
 
-The template includes examples of communication between:
-- Popup ↔ Background script
-- Popup ↔ Content script
-- Background ↔ Content script
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
 
-## Customization Tips
+### Feature Ideas
 
-1. **Update Extension Details**: Modify name, description, and version in `manifest.json`
-2. **Add Permissions**: Include additional permissions as needed for your functionality
-3. **Styling**: Customize the popup appearance in `popup.css`
-4. **Functionality**: Implement your specific features in the respective JavaScript files
-5. **Icons**: Replace placeholder icon references with your actual icon files
+- Time-based blocking (block sites during work hours)
+- Password protection for settings
+- Whitelist mode (allow only specific sites)
+- Focus sessions with timers
+- Integration with productivity apps
 
-## Common Use Cases
+## License
 
-This template supports development of extensions for:
-- Web page content modification
-- Data collection and analysis
-- User productivity tools
-- Page monitoring and notifications
-- Custom browser functionality
+This project is open source. Feel free to use, modify, and distribute as needed.
 
-## Testing
+## Support
 
-1. Load the extension in Edge developer mode
-2. Click the extension icon to test the popup
-3. Visit web pages to test content script functionality
-4. Check browser console for debug messages
-5. Test storage functionality with the provided buttons
+If you encounter any issues or have questions:
+1. Check the browser's extension console for error messages
+2. Try disabling and re-enabling the extension
+3. Reload the extension after making changes
+4. Create an issue in the repository for bugs or feature requests
 
-## Publishing
+---
 
-When ready to publish:
-1. Create proper icon files
-2. Update all placeholder content
-3. Test thoroughly across different websites
-4. Package the extension
-5. Submit to Microsoft Edge Add-ons store
-
-## Browser Compatibility
-
-This template is designed for Microsoft Edge but is also compatible with:
-- Google Chrome
-- Other Chromium-based browsers
-
-The WebExtensions API ensures cross-browser compatibility with minimal modifications.
+**Stay focused, stay productive! 🎯**

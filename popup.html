@@ -3,30 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Edge Extension</title>
+    <title>DontVisit - Website Blocker</title>
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <div class="container">
-        <h1>My Edge Extension</h1>
-        <p>Welcome to your Edge extension!</p>
-        
-        <div class="section">
-            <h3>Current Tab Info</h3>
-            <p id="tab-url">Loading...</p>
-            <p id="tab-title">Loading...</p>
+        <header class="header">
+            <h1>🚫 DontVisit</h1>
+            <div class="toggle-container">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="blocking-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Blocking Enabled</span>
+            </div>
+        </header>
+
+        <div class="current-site-section">
+            <h3>Current Site</h3>
+            <div class="current-site-info">
+                <div class="site-url" id="current-url">Loading...</div>
+                <button id="block-current-site" class="btn btn-danger">Block This Site</button>
+            </div>
         </div>
-        
-        <div class="section">
-            <button id="action-btn" class="primary-btn">Click Me!</button>
-            <button id="storage-btn" class="secondary-btn">Test Storage</button>
+
+        <div class="add-site-section">
+            <h3>Add Website to Block</h3>
+            <div class="input-group">
+                <input type="text" id="site-input" placeholder="Enter website (e.g., facebook.com)" />
+                <button id="add-site-btn" class="btn btn-primary">Add</button>
+            </div>
+            <div class="input-help">
+                Examples: facebook.com, *.reddit.com, youtube.com/watch
+            </div>
         </div>
-        
-        <div class="section">
-            <p id="status">Ready</p>
+
+        <div class="blocked-sites-section">
+            <h3>Blocked Sites (<span id="blocked-count">0</span>)</h3>
+            <div class="blocked-sites-list" id="blocked-sites-list">
+                <div class="no-sites-message" id="no-sites-message">
+                    No sites blocked yet. Add some above!
+                </div>
+            </div>
         </div>
+
+        <div class="statistics-section">
+            <h3>Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="total-blocked">0</div>
+                    <div class="stat-label">Sites Blocked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="sites-count">0</div>
+                    <div class="stat-label">In Blocklist</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3>Settings</h3>
+            <div class="setting-item">
+                <label for="blocking-method">Blocking Method:</label>
+                <select id="blocking-method" class="setting-select">
+                    <option value="close">Close Tab</option>
+                    <option value="redirect">Redirect to Blocked Page</option>
+                    <option value="warning">Show Warning</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <button id="clear-all-btn" class="btn btn-secondary">Clear All Sites</button>
+            <button id="export-btn" class="btn btn-secondary">Export List</button>
+        </div>
+
+        <div class="status-message" id="status-message"></div>
     </div>
-    
+
     <script src="popup.js"></script>
 </body>
 </html>
