@@ -40,8 +40,11 @@
         h1 {
             color: #dc3545;
             margin-bottom: 16px;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 36px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .blocked-url {
@@ -166,139 +169,18 @@
 </head>
 <body>
     <div class="container fade-in">
-        <div class="icon">🚫</div>
-        <h1>Website Blocked</h1>
-        
-        <div class="blocked-url" id="blocked-url">
-            Loading...
-        </div>
+        <div class="icon">😠</div>
+        <h1>We must remain focused!</h1>
         
         <p class="message">
-            This website has been blocked to help you stay focused and productive. 
-            You can manage your blocked sites list through the DontVisit extension.
+            Productivity before pleasure.
         </p>
 
         <div class="productivity-tip">
             <strong>💡 Productivity Tip:</strong>
-            Take this moment to refocus on your important tasks. Consider taking a short break, 
-            doing some deep breathing, or working on your priority goals instead.
+            <span id="productivity-tip-text">Loading tip...</span>
         </div>
 
-        <div class="actions">
-            <button class="btn btn-primary" onclick="goBack()">
-                ← Go Back
-            </button>
-            <button class="btn btn-secondary" onclick="openExtension()">
-                ⚙️ Manage Blocks
-            </button>
-            <button class="btn btn-danger" onclick="closeTab()">
-                ✕ Close Tab
-            </button>
-        </div>
-
-        <div class="stats" id="stats">
-            <div id="block-count">Loading statistics...</div>
-        </div>
-    </div>
-
-    <script>
-        // Get blocked URL from query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const blockedUrl = urlParams.get('blocked');
-        
-        if (blockedUrl) {
-            document.getElementById('blocked-url').textContent = decodeURIComponent(blockedUrl);
-            document.title = `Blocked: ${new URL(decodeURIComponent(blockedUrl)).hostname} - DontVisit`;
-        } else {
-            document.getElementById('blocked-url').textContent = 'Unknown website';
-        }
-
-        // Load statistics
-        loadStatistics();
-
-        async function loadStatistics() {
-            try {
-                const response = await chrome.runtime.sendMessage({ action: 'getStatistics' });
-                
-                if (response.success && response.statistics) {
-                    const stats = response.statistics;
-                    const totalBlocked = stats.totalBlocked || 0;
-                    const today = new Date().toDateString();
-                    
-                    document.getElementById('block-count').innerHTML = `
-                        <strong>${totalBlocked}</strong> sites blocked since installation<br>
-                        Keep up the great work staying focused! 🎯
-                    `;
-                } else {
-                    document.getElementById('block-count').textContent = 'Statistics unavailable';
-                }
-            } catch (error) {
-                console.error('Error loading statistics:', error);
-                document.getElementById('block-count').textContent = 'Statistics unavailable';
-            }
-        }
-
-        function goBack() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = 'about:blank';
-            }
-        }
-
-        function openExtension() {
-            // This will open the extension popup (if possible)
-            // Note: Direct popup opening from content pages is limited
-            alert('Click the DontVisit extension icon in your browser toolbar to manage blocked sites.');
-        }
-
-        function closeTab() {
-            window.close();
-        }
-
-        // Add some motivational quotes
-        const motivationalQuotes = [
-            "Focus is a matter of deciding what things you're not going to do. - John Carmack",
-            "The successful warrior is the average person with laser-like focus. - Bruce Lee",
-            "Concentrate all your thoughts upon the work at hand. - Alexander Graham Bell",
-            "It is during our darkest moments that we must focus to see the light. - Aristotle",
-            "The art of being wise is knowing what to overlook. - William James"
-        ];
-
-        // Show a random quote
-        const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
-        
-        // Add quote after a delay
-        setTimeout(() => {
-            const quoteElement = document.createElement('div');
-            quoteElement.style.cssText = `
-                margin-top: 20px;
-                padding: 16px;
-                background: #f8f9fa;
-                border-left: 4px solid #007bff;
-                font-style: italic;
-                color: #495057;
-                border-radius: 0 6px 6px 0;
-            `;
-            quoteElement.innerHTML = `"${randomQuote}"`;
-            
-            document.querySelector('.container').insertBefore(
-                quoteElement, 
-                document.querySelector('.stats')
-            );
-        }, 1000);
-
-        // Update statistics when page loads
-        chrome.runtime.sendMessage({
-            action: 'logActivity',
-            data: {
-                type: 'blockedPageViewed',
-                url: blockedUrl,
-                timestamp: Date.now()
-            }
-        }).catch(() => {
-            // Ignore errors if extension context is not available
-        });
-    </script>
+    <script src="blocked.js"></script>
 </body>
 </html>

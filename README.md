@@ -87,10 +87,8 @@ DontVisit/
 ├── blocked.html          # Blocked page template
 ├── README.md             # This file
 └── icons/                # Extension icons
-    ├── icon16.png
-    ├── icon32.png
-    ├── icon48.png
-    └── icon128.png
+    ├── favicon-16x16.png
+    └── favicon-32x32.png
 ```
 
 ## Technical Details
