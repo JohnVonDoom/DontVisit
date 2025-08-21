@@ -1,4 +1,4 @@
-# DontVisit - Website Blocker Extension
+# Stay Away! - Website Blocker Extension
 
 A powerful and user-friendly browser extension that helps you stay focused and productive by blocking distracting websites.
 
@@ -36,20 +36,20 @@ A powerful and user-friendly browser extension that helps you stay focused and p
    - **Edge**: `edge://extensions/`
 3. Enable "Developer mode"
 4. Click "Load unpacked" and select the extension folder
-5. The DontVisit extension icon will appear in your browser toolbar
+5. The Stay Away! extension icon will appear in your browser toolbar
 
 ## Usage
 
 ### Adding Blocked Sites
 
 1. **From the popup**:
-   - Click the DontVisit extension icon
+   - Click the Stay Away! extension icon
    - Enter a website in the "Add Website to Block" field
    - Click "Add" or press Enter
 
 2. **Block current site**:
    - Navigate to the site you want to block
-   - Click the DontVisit extension icon
+   - Click the Stay Away! extension icon
    - Click "Block This Site"
 
 ### Managing Blocked Sites
@@ -77,7 +77,7 @@ Choose your preferred blocking method in the Settings section:
 ## File Structure
 
 ```
-DontVisit/
+Stay Away!/
 ├── manifest.json          # Extension configuration
 ├── background.js          # Background service worker (main blocking logic)
 ├── popup.html            # Extension popup interface
@@ -131,7 +131,7 @@ DontVisit/
 
 ## Privacy
 
-DontVisit respects your privacy:
+Stay Away! respects your privacy:
 - ✅ All data is stored locally on your device
 - ✅ No data is sent to external servers
 - ✅ No tracking or analytics
