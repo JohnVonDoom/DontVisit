@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "DontVisit - Website Blocker",
+  "name": "Stay Away! - Website Blocker",
   "version": "1.0.0",
-  "description": "Block websites that distract you from productivity",
+  "description": "We must remain focused!",
   "permissions": [
     "activeTab",
     "storage",
